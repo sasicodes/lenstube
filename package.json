@@ -54,7 +54,7 @@
     "@graphql-codegen/cli": "^2.6.4",
     "@graphql-codegen/fragment-matcher": "^3.2.1",
     "@graphql-codegen/typescript": "^2.5.1",
-    "@types/node": "18.0.0",
+    "@types/node": "18.0.1",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
     "@types/ua-parser-js": "^0.7.36",
