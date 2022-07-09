@@ -15,10 +15,12 @@ interface Props {
   autoPlay?: boolean
   ratio?: string
   time?: number
+  onVideoDuration: Function
 }
 
 interface customPlyrProps extends PlyrProps {
   time?: number
+  onVideoDuration: Function
 }
 
 export const defaultPlyrControls = [
@@ -37,7 +39,7 @@ export const defaultPlyrControls = [
 ]
 
 const CustomPlyrInstance = forwardRef<APITypes, customPlyrProps>(
-  ({ source, options, time }, ref) => {
+  ({ source, options, time, onVideoDuration }, ref) => {
     const raptorRef = usePlyr(ref, { options, source })
     const [showContextMenu, setShowContextMenu] = useState(false)
     const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -54,6 +56,7 @@ const CustomPlyrInstance = forwardRef<APITypes, customPlyrProps>(
 
       const onDataLoaded = () => {
         api.plyr.off('loadeddata', onDataLoaded)
+        onVideoDuration && onVideoDuration(api.plyr.duration.toFixed(2))
         api.plyr.currentTime = Number(time || 0)
       }
       // Set seek time when meta data fully downloaded
@@ -100,7 +103,8 @@ const VideoPlayer: FC<Props> = ({
   autoPlay = true,
   ratio = '16:9',
   wrapperClassName,
-  time
+  time,
+  onVideoDuration
 }) => {
   const ref = React.useRef<APITypes>(null)
 
@@ -128,6 +132,7 @@ const VideoPlayer: FC<Props> = ({
         }}
         options={options}
         time={time}
+        onVideoDuration={onVideoDuration}
       />
     </div>
   )

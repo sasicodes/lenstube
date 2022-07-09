@@ -26,7 +26,12 @@ type PlayerProps = {
 
 const MemoizedVideoPlayer = React.memo(
   ({ source, poster, time }: PlayerProps) => (
-    <VideoPlayer source={source} poster={poster} time={time} />
+    <VideoPlayer
+      source={source}
+      poster={poster}
+      time={time}
+      onVideoDuration={() => void 0}
+    />
   )
 )
 MemoizedVideoPlayer.displayName = 'MemoizedVideoPlayer'

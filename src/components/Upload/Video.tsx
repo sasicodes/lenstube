@@ -14,19 +14,36 @@ import UploadMethod from './UploadMethod'
 type PlayerProps = {
   source: string
   poster: string
+  onVideoDuration: Function
 }
-const MemoizedVideoPlayer = React.memo(({ source, poster }: PlayerProps) => (
-  <VideoPlayer
-    source={source}
-    poster={poster}
-    wrapperClassName="!rounded-b-none"
-    autoPlay={false}
-    controls={['play', 'progress', 'mute', 'volume', 'fullscreen']}
-  />
-))
+
+const checkEqual = (
+  prevProps: { poster: string },
+  nextProps: { poster: string }
+) => {
+  if (prevProps.poster === nextProps.poster) {
+    return true
+  }
+  return false
+}
+
+const MemoizedVideoPlayer = React.memo(
+  ({ source, poster, onVideoDuration }: PlayerProps) => (
+    <VideoPlayer
+      source={source}
+      poster={poster}
+      wrapperClassName="!rounded-b-none"
+      autoPlay={false}
+      controls={['play', 'progress', 'mute', 'volume', 'fullscreen']}
+      onVideoDuration={onVideoDuration}
+    />
+  ),
+  checkEqual
+)
+
 MemoizedVideoPlayer.displayName = 'MemoizedVideoPlayer'
 
-const Video = () => {
+const Video = ({ onVideoDuration }: { onVideoDuration: Function }) => {
   const { uploadedVideo } = useAppStore()
   const [, copy] = useCopyToClipboard()
 
@@ -47,6 +64,7 @@ const Video = () => {
         <MemoizedVideoPlayer
           source={uploadedVideo.preview}
           poster={uploadedVideo.thumbnail}
+          onVideoDuration={onVideoDuration}
         />
       </div>
       <Tooltip content={`Uploaded (${uploadedVideo.percent}%)`}>
