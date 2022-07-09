@@ -16,14 +16,15 @@ const About: FC<Props> = ({ channel }) => {
   return (
     <div className="space-y-4 md:pr-4 md:space-y-6">
       {channel?.bio && (
-        <div className="flex flex-col overflow-hidden">
-          <h6 className="text-[11px] font-semibold uppercase opacity-50">
+        <div className="flex flex-col space-y-3">
+          <h6 className="text-xs font-semibold uppercase opacity-80">
             Description
           </h6>
           <p>{channel?.bio}</p>
         </div>
       )}
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-3">
+        <h6 className="text-xs font-semibold uppercase opacity-80">Links</h6>
         <div className="space-y-1.5">
           {getKeyFromAttributes(attributes, 'website') && (
             <div className="flex items-center space-x-1">
