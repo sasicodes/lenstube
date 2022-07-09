@@ -13,7 +13,7 @@ const CoverLinks = ({ channel }: { channel: Profile }) => {
             href={getKeyFromAttributes(channel.attributes, 'website')}
             target="_blank"
             rel="noreferer noreferrer"
-            className="p-2 bg-white rounded-lg dark:bg-black bg-opacity-60"
+            className="p-2 bg-white rounded-lg dark:bg-gray-900 bg-opacity-60"
           >
             <HiOutlineGlobe />
           </a>
@@ -26,7 +26,7 @@ const CoverLinks = ({ channel }: { channel: Profile }) => {
             )}`}
             target="_blank"
             rel="noreferer noreferrer"
-            className="p-2 bg-white rounded-lg dark:bg-black bg-opacity-60"
+            className="p-2 bg-white rounded-lg dark:bg-gray-900 bg-opacity-60"
           >
             <RiTwitterLine />
           </a>

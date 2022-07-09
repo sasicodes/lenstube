@@ -1,8 +1,11 @@
+import Tooltip from '@components/UIElements/Tooltip'
 import { LENSTER_WEBSITE_URL, STATIC_ASSETS } from '@utils/constants'
 import { getKeyFromAttributes } from '@utils/functions/getFromAttributes'
+import { shortenAddress } from '@utils/functions/shortenAddress'
 import React, { FC } from 'react'
+import { AiOutlineNumber } from 'react-icons/ai'
 import { HiOutlineGlobe } from 'react-icons/hi'
-import { RiTwitterLine } from 'react-icons/ri'
+import { RiShieldKeyholeLine, RiTwitterLine } from 'react-icons/ri'
 import { Profile } from 'src/types'
 
 type Props = {
@@ -74,6 +77,21 @@ const About: FC<Props> = ({ channel }) => {
             </a>
           </div>
         </div>
+      </div>
+      <div className="inline-flex flex-col space-y-3">
+        <h6 className="text-xs font-semibold uppercase opacity-80">Others</h6>
+        <Tooltip content={parseInt(channel.id)} placement="right">
+          <span className="inline-flex items-center space-x-1">
+            <AiOutlineNumber />
+            <span>{channel.id}</span>
+          </span>
+        </Tooltip>
+        <Tooltip content="Owner address" placement="right">
+          <span className="inline-flex items-center space-x-1">
+            <RiShieldKeyholeLine />
+            <span>{shortenAddress(channel.ownedBy)}</span>
+          </span>
+        </Tooltip>
       </div>
     </div>
   )
