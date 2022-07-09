@@ -5,7 +5,7 @@ import { TextArea } from '@components/UIElements/TextArea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import useAppStore from '@lib/store'
 import clsx from 'clsx'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -30,13 +30,12 @@ const formSchema = z.object({
 export type VideoFormData = z.infer<typeof formSchema>
 
 type Props = {
-  onUpload: Function
+  onUpload: () => void
   onCancel: () => void
 }
 
 const Details: FC<Props> = ({ onUpload, onCancel }) => {
   const { uploadedVideo, setUploadedVideo } = useAppStore()
-  const [duration, setDuration] = useState<number>()
   const {
     register,
     handleSubmit,
@@ -54,15 +53,11 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
 
   const onSubmitForm = (data: VideoFormData) => {
     setUploadedVideo(data)
-    onUpload(duration)
+    onUpload()
   }
 
   const onThumbnailUpload = (ipfsUrl: string, thumbnailType: string) => {
     setUploadedVideo({ thumbnail: ipfsUrl, thumbnailType })
-  }
-
-  const onVideoDuration = (duration: number) => {
-    setDuration(duration)
   }
 
   return (
@@ -164,7 +159,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
           </div>
         </div>
         <div className="flex flex-col items-start justify-between">
-          <Video onVideoDuration={onVideoDuration} />
+          <Video />
         </div>
       </div>
       <div className="flex items-center justify-end mt-6">

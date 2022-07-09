@@ -215,7 +215,7 @@ const UploadSteps = () => {
     }
   })
 
-  const createPublication = async (duration: number) => {
+  const createPublication = async () => {
     setUploadedVideo({
       buttonText: 'Storing metadata...',
       loading: true
@@ -260,14 +260,6 @@ const UploadSteps = () => {
         value: 'sensitive'
       })
     }
-    if (duration) {
-      attributes.push({
-        traitType: 'string',
-        trait_type: 'duration',
-        key: 'duration',
-        value: duration.toString()
-      })
-    }
     const { ipfsUrl } = await uploadDataToIPFS({
       version: '1.0.0',
       metadata_id: uuidv4(),
@@ -306,8 +298,8 @@ const UploadSteps = () => {
     })
   }
 
-  const onUpload = (duration: number) => {
-    if (uploadedVideo.videoSource) return createPublication(duration)
+  const onUpload = () => {
+    if (uploadedVideo.videoSource) return createPublication()
     else {
       if (
         isLessThan100MB(uploadedVideo.file?.size) &&
