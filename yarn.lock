@@ -10119,10 +10119,10 @@ zen-observable@0.8.15:
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.15.tgz#96415c512d8e3ffd920afd3889604e30b9eaac15"
   integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 
-zod@^3.17.3:
-  version "3.17.3"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.17.3.tgz#86abbc670ff0063a4588d85a4dcc917d6e4af2ba"
-  integrity sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==
+zod@^3.17.5:
+  version "3.17.5"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.17.5.tgz#50392d6e801c2e3a913155538c254401718a6ab6"
+  integrity sha512-La5nhC8xGXEQBUohQq7e9R16yXQHjLfIa91wKQrbstTXA/GbAPGtiY2e/F05shumw+W0s3ms+R6LoIWGcMvJ4A==
 
 zustand@^4.0.0-rc.1:
   version "4.0.0-rc.1"

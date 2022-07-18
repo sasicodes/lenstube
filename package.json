@@ -50,7 +50,7 @@
     "ua-parser-js": "^1.0.2",
     "uuid": "^8.3.2",
     "wagmi": "^0.5.9",
-    "zod": "^3.17.3",
+    "zod": "^3.17.5",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
