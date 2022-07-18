@@ -1,7 +1,13 @@
-import React, { useRef } from 'react'
+import { getVideoUrl } from '@utils/functions/getVideoUrl'
+import React, { FC, useRef } from 'react'
 import { useInView } from 'react-cool-inview'
+import { LenstubePublication } from 'src/types/local'
 
-const ShortVideo = () => {
+type Props = {
+  video: LenstubePublication
+}
+
+const ByteVideo: FC<Props> = ({ video }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const onClickVideo = () => {
@@ -15,6 +21,7 @@ const ShortVideo = () => {
       videoRef.current?.pause()
     },
     onEnter: () => {
+      videoRef.current?.load()
       videoRef.current?.play()
     }
   })
@@ -24,17 +31,14 @@ const ShortVideo = () => {
       <video
         onClick={() => onClickVideo()}
         ref={videoRef}
-        className="rounded-xl h-[calc(100vh-10rem)]"
+        className="rounded-xl bg-black h-[calc(100vh-10rem)] md:w-[439px]"
         loop={true}
       >
-        <source
-          src="https://livepeercdn.com/asset/fc38vt0y0fhnc516/video"
-          type="video/mp4"
-        />
+        <source src={getVideoUrl(video)} type="video/mp4" />
       </video>
       <div ref={observe} />
     </div>
   )
 }
 
-export default ShortVideo
+export default ByteVideo
