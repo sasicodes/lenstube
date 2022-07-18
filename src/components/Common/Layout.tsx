@@ -126,7 +126,7 @@ const Layout: FC<Props> = ({ children }) => {
           <Sidebar />
           <div className="w-full md:pl-[94px] pl-2 pr-2 md:pr-4 max-w-[110rem] mx-auto">
             {!isSignInPage && <Header />}
-            <div className="py-3">{children}</div>
+            <div className="py-2">{children}</div>
           </div>
         </div>
       </Suspense>
