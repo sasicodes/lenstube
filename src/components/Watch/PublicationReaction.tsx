@@ -123,7 +123,8 @@ const PublicationReaction: FC<Props> = ({
       <Button variant="secondary" className="!p-0" onClick={() => likeVideo()}>
         <span
           className={clsx('flex items-center space-x-1 outline-none', {
-            'text-indigo-500 font-semibold': reaction.isLiked
+            'text-indigo-500 font-semibold': reaction.isLiked,
+            'flex-col': isVertical
           })}
         >
           <AiOutlineLike
@@ -147,7 +148,8 @@ const PublicationReaction: FC<Props> = ({
       >
         <span
           className={clsx('flex items-center space-x-1 outline-none', {
-            'text-indigo-500 font-semibold': reaction.isDisliked
+            'text-indigo-500 font-semibold': reaction.isDisliked,
+            'flex-col': isVertical
           })}
         >
           <AiOutlineDislike

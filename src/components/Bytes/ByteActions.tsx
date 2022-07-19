@@ -14,7 +14,7 @@ const ByteActions: FC<Props> = ({ video }) => {
 
   return (
     <div className="flex flex-col justify-between">
-      <div className="items-center hidden py-5 space-y-4 md:flex md:flex-col">
+      <div className="items-center hidden py-3 space-y-4 md:flex md:flex-col">
         <VideoOptions
           video={video}
           setShowShare={setShowShare}
@@ -25,8 +25,8 @@ const ByteActions: FC<Props> = ({ video }) => {
         <PublicationReaction
           publication={video}
           size="2xl"
-          isVertical
-          showLabel={false}
+          isVertical={true}
+          showLabel={true}
         />
         <Button
           variant="secondary"
