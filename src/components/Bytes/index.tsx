@@ -57,14 +57,14 @@ const Bytes = () => {
 
   if (loading)
     return (
-      <div className="grid h-[90vh] place-items-center">
+      <div className="grid h-[80vh] place-items-center">
         <Loader />
       </div>
     )
 
   if (data?.publications?.items?.length === 0) {
     return (
-      <div className="grid h-[90vh] place-items-center">
+      <div className="grid h-[80vh] place-items-center">
         <NoDataFound isCenter withImage text="No videos found" />
       </div>
     )

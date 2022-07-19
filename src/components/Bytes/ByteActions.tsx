@@ -13,8 +13,8 @@ const ByteActions: FC<Props> = ({ video }) => {
   const [showShare, setShowShare] = useState(false)
 
   return (
-    <>
-      <div className="flex-col items-center justify-end hidden h-full py-2 space-y-4 md:flex">
+    <div className="block">
+      <div className="items-center justify-end hidden h-full py-2 space-y-4 md:flex md:flex-col">
         <VideoOptions
           video={video}
           setShowShare={setShowShare}
@@ -37,7 +37,7 @@ const ByteActions: FC<Props> = ({ video }) => {
         </Button>
       </div>
       <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
-    </>
+    </div>
   )
 }
 
