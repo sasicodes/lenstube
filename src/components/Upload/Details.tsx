@@ -124,7 +124,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                 </span>
               </div>
               <span className="text-xs opacity-70">
-                Using
+                Use
                 <button
                   type="button"
                   onClick={() =>
