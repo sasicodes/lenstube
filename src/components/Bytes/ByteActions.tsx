@@ -14,7 +14,7 @@ const ByteActions: FC<Props> = ({ video }) => {
 
   return (
     <div className="block">
-      <div className="items-center justify-end hidden h-full py-2 space-y-4 md:flex md:flex-col">
+      <div className="items-center justify-end hidden h-full py-5 space-y-4 md:flex md:flex-col">
         <VideoOptions
           video={video}
           setShowShare={setShowShare}
