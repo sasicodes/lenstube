@@ -26,6 +26,7 @@ const Sidebar = dynamic(() => import('./Sidebar'), {
 interface Props {
   children: ReactNode
 }
+const NO_HEADER_PATHS = [AUTH]
 
 const Layout: FC<Props> = ({ children }) => {
   const { pathname, replace, asPath } = useRouter()
@@ -45,7 +46,6 @@ const Layout: FC<Props> = ({ children }) => {
   })
   const { mounted } = useIsMounted()
   const { address, connector, isDisconnected } = useAccount()
-  const isSignInPage = pathname === AUTH
 
   const { loading } = useQuery(CURRENT_USER_QUERY, {
     variables: { ownedBy: address },
@@ -122,10 +122,10 @@ const Layout: FC<Props> = ({ children }) => {
         toastOptions={getToastOptions(resolvedTheme)}
       />
       <Suspense fallback={<FullPageLoader />}>
-        <div className="flex pb-14 md:pb-0">
+        <div className="flex pb-10 md:pb-0">
           <Sidebar />
           <div className="w-full md:pl-[94px] pl-2 pr-2 md:pr-4 max-w-[110rem] mx-auto">
-            {!isSignInPage && <Header />}
+            {!NO_HEADER_PATHS.includes(pathname) && <Header />}
             <div className="py-2">{children}</div>
           </div>
         </div>

@@ -15,7 +15,7 @@ const BottomOverlay: FC<Props> = ({ video }) => {
   return (
     <div className="absolute bottom-0 left-0 right-0 px-3 pt-5 pb-3">
       <div className="pb-2">
-        <h1 className="text-white line-clamp-1">{video.metadata.name}</h1>
+        <h1 className="text-white line-clamp-2">{video.metadata.name}</h1>
       </div>
       <div className="flex items-center justify-between">
         <div>
@@ -42,7 +42,11 @@ const BottomOverlay: FC<Props> = ({ video }) => {
             subscribeType={subscribeType}
           />
           {video?.collectModule?.__typename !==
-            'RevertCollectModuleSettings' && <MintVideo video={video} />}
+            'RevertCollectModuleSettings' && (
+            <div className="hidden md:block">
+              <MintVideo video={video} />
+            </div>
+          )}
         </div>
       </div>
     </div>
