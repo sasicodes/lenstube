@@ -40,7 +40,7 @@ const ByteVideo: FC<Props> = ({ video }) => {
           ref={videoRef}
           width="345"
           poster={imageCdn(getThumbnailUrl(video), 'thumbnail_v')}
-          className="rounded-xl min-w-[250px] bg-black h-[calc(100vh-9rem)]"
+          className="rounded-xl min-w-[250px] w-[345px] 2xl:w-[450px] bg-black h-[calc(100vh-9rem)]"
           loop={true}
         >
           <source src={getVideoUrl(video)} type="video/mp4" />
