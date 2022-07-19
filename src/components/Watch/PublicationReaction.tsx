@@ -14,10 +14,17 @@ import { LenstubePublication } from 'src/types/local'
 
 type Props = {
   publication: LenstubePublication
-  size?: 'xs' | 'sm'
+  size?: 'xs' | 'sm' | 'xl'
+  isVertical?: boolean
+  showLabel?: boolean
 }
 
-const VideoReaction: FC<Props> = ({ publication, size = 'sm' }) => {
+const PublicationReaction: FC<Props> = ({
+  publication,
+  size = 'sm',
+  isVertical = false,
+  showLabel = true
+}) => {
   const { isAuthenticated, selectedChannel } = usePersistStore()
 
   const [reaction, setReaction] = useState({
@@ -107,17 +114,29 @@ const VideoReaction: FC<Props> = ({ publication, size = 'sm' }) => {
   }
 
   return (
-    <div className="flex items-center justify-end space-x-2.5 md:space-x-4">
+    <div
+      className={clsx('flex items-center justify-end', {
+        'flex-col space-y-2.5 md:space-y-4 p-1 px-3': isVertical,
+        'space-x-2.5 md:space-x-4': !isVertical
+      })}
+    >
       <Button variant="secondary" className="!p-0" onClick={() => likeVideo()}>
         <span
           className={clsx('flex items-center space-x-1 outline-none', {
             'text-indigo-500 font-semibold': reaction.isLiked
           })}
         >
-          <AiOutlineLike className={clsx({ 'text-xs': size === 'xs' })} />
-          <span className={clsx({ 'text-xs': size === 'xs' })}>
-            {reaction.likeCount > 0 ? reaction.likeCount : 'Like'}
-          </span>
+          <AiOutlineLike
+            className={clsx({
+              'text-xs': size === 'xs',
+              'text-xl': size === 'xl'
+            })}
+          />
+          {showLabel && (
+            <span className={clsx({ 'text-xs': size === 'xs' })}>
+              {reaction.likeCount > 0 ? reaction.likeCount : 'Like'}
+            </span>
+          )}
         </span>
       </Button>
       <Button
@@ -130,14 +149,21 @@ const VideoReaction: FC<Props> = ({ publication, size = 'sm' }) => {
             'text-indigo-500 font-semibold': reaction.isDisliked
           })}
         >
-          <AiOutlineDislike className={clsx({ 'text-xs': size === 'xs' })} />
-          <span className={clsx({ 'text-xs': size === 'xs' })}>
-            {reaction.dislikeCount > 0 ? reaction.dislikeCount : 'Dislike'}
-          </span>
+          <AiOutlineDislike
+            className={clsx({
+              'text-xs': size === 'xs',
+              'text-xl': size === 'xl'
+            })}
+          />
+          {showLabel && (
+            <span className={clsx({ 'text-xs': size === 'xs' })}>
+              {reaction.dislikeCount > 0 ? reaction.dislikeCount : 'Dislike'}
+            </span>
+          )}
         </span>
       </Button>
     </div>
   )
 }
 
-export default VideoReaction
+export default PublicationReaction

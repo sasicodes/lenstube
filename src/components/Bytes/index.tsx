@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import MetaTags from '@components/Common/MetaTags'
 import { Loader } from '@components/UIElements/Loader'
 import { NoDataFound } from '@components/UIElements/NoDataFound'
-import { LENSTUBE_APP_ID } from '@utils/constants'
+import { LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID } from '@utils/constants'
 import { EXPLORE_QUERY } from '@utils/gql/queries'
 import React, { useState } from 'react'
 import { useInView } from 'react-cool-inview'
@@ -19,9 +19,9 @@ const Bytes = () => {
     variables: {
       request: {
         sortCriteria: 'LATEST',
-        limit: 12,
+        limit: 5,
         noRandomize: false,
-        sources: [LENSTUBE_APP_ID],
+        sources: [LENSTUBE_BYTES_APP_ID, LENSTUBE_APP_ID],
         publicationTypes: ['POST']
       }
     },
@@ -40,9 +40,9 @@ const Bytes = () => {
             request: {
               sortCriteria: 'LATEST',
               cursor: pageInfo?.next,
-              limit: 16,
+              limit: 10,
               noRandomize: false,
-              sources: [LENSTUBE_APP_ID],
+              sources: [LENSTUBE_BYTES_APP_ID, LENSTUBE_APP_ID],
               publicationTypes: ['POST']
             }
           }

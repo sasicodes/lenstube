@@ -1,7 +1,12 @@
+import getThumbnailUrl from '@utils/functions/getThumbnailUrl'
 import { getVideoUrl } from '@utils/functions/getVideoUrl'
+import imageCdn from '@utils/functions/imageCdn'
 import React, { FC, useRef } from 'react'
 import { useInView } from 'react-cool-inview'
 import { LenstubePublication } from 'src/types/local'
+
+import BottomOverlay from './BottomOverlay'
+import ByteActions from './ByteActions'
 
 type Props = {
   video: LenstubePublication
@@ -28,15 +33,22 @@ const ByteVideo: FC<Props> = ({ video }) => {
 
   return (
     <div ref={observe} className="flex justify-center mt-5 snap-center">
-      <video
-        onClick={() => onClickVideo()}
-        ref={videoRef}
-        className="rounded-xl bg-black h-[calc(100vh-10rem)] md:w-[439px]"
-        loop={true}
-      >
-        <source src={getVideoUrl(video)} type="video/mp4" />
-      </video>
-      <div ref={observe} />
+      <div className="relative">
+        <video
+          onContextMenu={(event) => event.preventDefault()}
+          onClick={() => onClickVideo()}
+          ref={videoRef}
+          width="345"
+          poster={imageCdn(getThumbnailUrl(video), 'thumbnail_v')}
+          className="rounded-xl min-w-[250px] bg-black h-[calc(100vh-9rem)]"
+          loop={true}
+        >
+          <source src={getVideoUrl(video)} type="video/mp4" />
+        </video>
+        <BottomOverlay video={video} />
+        <div ref={observe} />
+      </div>
+      <ByteActions video={video} />
     </div>
   )
 }

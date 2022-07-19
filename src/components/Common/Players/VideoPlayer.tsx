@@ -77,7 +77,13 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
       }
     }
 
-    const onDataLoaded = () => onMetadataLoaded()
+    const onDataLoaded = () => {
+      onMetadataLoaded()
+      if (pathname === UPLOAD) {
+        const currentVideo = document.getElementsByTagName('video')[0]
+        analyseVideo(currentVideo)
+      }
+    }
 
     useEffect(() => {
       const { current } = ref as React.MutableRefObject<APITypes>
@@ -90,8 +96,6 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
 
       const metaDataLoaded = () => {
         if (pathname === UPLOAD && api.plyr?.duration) {
-          const currentVideo = document.getElementsByTagName('video')[0]
-          analyseVideo(currentVideo)
           setUploadedVideo({
             durationInSeconds: api.plyr.duration.toFixed(2)
           })
