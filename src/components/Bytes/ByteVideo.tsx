@@ -38,6 +38,7 @@ const ByteVideo: FC<Props> = ({ video }) => {
           onContextMenu={(event) => event.preventDefault()}
           onClick={() => onClickVideo()}
           ref={videoRef}
+          disableRemotePlayback
           width="345"
           poster={imageCdn(getThumbnailUrl(video), 'thumbnail_v')}
           className="md:rounded-xl min-w-[250px] w-[345px] 2xl:w-[450px] h-[85vh] bg-black md:h-[calc(100vh-9rem)]"
