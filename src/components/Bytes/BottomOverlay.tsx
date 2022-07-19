@@ -27,7 +27,7 @@ const BottomOverlay: FC<Props> = ({ video }) => {
                 alt="channel picture"
               />
               <div className="flex flex-col items-start text-white">
-                <h1 className="font-semibold">{channel?.handle}</h1>
+                <h6>{channel?.handle}</h6>
                 <span className="inline-flex items-center space-x-1 text-xs">
                   {channel?.stats.totalFollowers} subscribers
                 </span>
