@@ -74,7 +74,7 @@ const Bytes = () => {
     <div className="overflow-y-hidden">
       <MetaTags />
       {!error && !loading && (
-        <div className="h-[calc(100vh-5rem)] overflow-y-scroll no-scrollbar snap-y snap-mandatory">
+        <div className="h-[calc(100vh-5rem)] overflow-y-scroll no-scrollbar snap-y snap-mandatory scroll-smooth">
           {bytes?.map((video: LenstubePublication, idx: number) => (
             <ByteVideo video={video} key={`${video?.id}_${idx}`} />
           ))}

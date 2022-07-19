@@ -14,7 +14,7 @@ import { LenstubePublication } from 'src/types/local'
 
 type Props = {
   publication: LenstubePublication
-  size?: 'xs' | 'sm' | 'xl'
+  size?: 'xs' | 'sm' | 'xl' | '2xl'
   isVertical?: boolean
   showLabel?: boolean
 }
@@ -129,7 +129,8 @@ const PublicationReaction: FC<Props> = ({
           <AiOutlineLike
             className={clsx({
               'text-xs': size === 'xs',
-              'text-xl': size === 'xl'
+              'text-xl': size === 'xl',
+              'text-2xl': size === '2xl'
             })}
           />
           {showLabel && (
@@ -152,7 +153,8 @@ const PublicationReaction: FC<Props> = ({
           <AiOutlineDislike
             className={clsx({
               'text-xs': size === 'xs',
-              'text-xl': size === 'xl'
+              'text-xl': size === 'xl',
+              'text-2xl': size === '2xl'
             })}
           />
           {showLabel && (
