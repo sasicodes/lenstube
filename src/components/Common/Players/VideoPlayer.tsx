@@ -30,7 +30,7 @@ interface Props {
 
 interface CustomPlyrProps extends PlyrProps {
   time?: number
-  onMetadataLoaded: () => void
+  onVideoDataLoaded: () => void
 }
 
 export const defaultPlyrControls = [
@@ -49,7 +49,7 @@ export const defaultPlyrControls = [
 ]
 
 const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
-  ({ source, options, time, onMetadataLoaded }, ref) => {
+  ({ source, options, time, onVideoDataLoaded }, ref) => {
     const raptorRef = usePlyr(ref, { options, source })
     const [showContextMenu, setShowContextMenu] = useState(false)
     const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -69,7 +69,7 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
 
     const onDataLoaded = (event: Event) => {
       if (event.target) {
-        onMetadataLoaded()
+        onVideoDataLoaded()
         if (pathname === UPLOAD) {
           const currentVideo = document.getElementsByTagName('video')[0]
           analyseVideo(currentVideo)
@@ -176,7 +176,7 @@ const VideoPlayer: FC<Props> = ({
         }}
         options={options}
         time={time}
-        onMetadataLoaded={() => setPlyrControls(controls)}
+        onVideoDataLoaded={() => setPlyrControls(controls)}
       />
     </div>
   )
