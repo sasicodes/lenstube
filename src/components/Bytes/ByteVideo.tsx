@@ -48,7 +48,7 @@ const ByteVideo: FC<Props> = ({ video }) => {
           disableRemotePlayback
           width="345"
           poster={imageCdn(getThumbnailUrl(video), 'thumbnail_v')}
-          className="md:rounded-xl min-w-[250px] w-[345px] 2xl:w-[450px] h-[80vh] bg-black md:h-[calc(100vh-9em)]"
+          className="md:rounded-xl min-w-[250px] w-[345px] 2xl:w-[450px] h-[78vh] bg-black md:h-[calc(100vh-9em)]"
           loop={true}
         >
           <source src={getVideoUrl(video)} type="video/mp4" />
