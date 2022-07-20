@@ -95,9 +95,9 @@ const Layout: FC<Props> = ({ children }) => {
       if (disconnect) disconnect()
       setIsAuthenticated(false)
     }
-    // connector?.on('change', () => {
-    // logout()
-    // })
+    connector?.on('change', () => {
+      logout()
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isAuthenticated,
