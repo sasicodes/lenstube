@@ -1,5 +1,4 @@
 import SubscribeActions from '@components/Common/SubscribeActions'
-import MintVideo from '@components/Watch/MintVideo'
 import getProfilePicture from '@utils/functions/getProfilePicture'
 import Link from 'next/link'
 import React, { FC } from 'react'
@@ -41,12 +40,6 @@ const BottomOverlay: FC<Props> = ({ video }) => {
             channel={video.profile}
             subscribeType={subscribeType}
           />
-          {video?.collectModule?.__typename !==
-            'RevertCollectModuleSettings' && (
-            <div className="hidden md:block">
-              <MintVideo video={video} />
-            </div>
-          )}
         </div>
       </div>
     </div>

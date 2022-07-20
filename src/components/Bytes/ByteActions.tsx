@@ -1,9 +1,8 @@
 import ShareModal from '@components/Common/VideoCard/ShareModal'
 import VideoOptions from '@components/Common/VideoCard/VideoOptions'
-import { Button } from '@components/UIElements/Button'
+import MintVideo from '@components/Watch/MintVideo'
 import PublicationReaction from '@components/Watch/PublicationReaction'
 import React, { FC, useState } from 'react'
-import { AiOutlineShareAlt } from 'react-icons/ai'
 import { LenstubePublication } from 'src/types/local'
 
 type Props = {
@@ -21,7 +20,7 @@ const ByteActions: FC<Props> = ({ video }) => {
           showOnHover={false}
         />
       </div>
-      <div className="items-center hidden py-3 space-y-3 md:flex md:flex-col">
+      <div className="items-center hidden py-3 space-y-2 md:flex md:flex-col">
         <PublicationReaction
           publication={video}
           iconSize="2xl"
@@ -29,22 +28,13 @@ const ByteActions: FC<Props> = ({ video }) => {
           isVertical={true}
           showLabel={true}
         />
-        <Button
-          variant="secondary"
-          className="!p-0"
-          onClick={() => setShowShare(true)}
-        >
-          <span className="flex flex-col items-center justify-center space-x-1">
-            <AiOutlineShareAlt className="text-2xl" />
-            <span className="pt-1 text-xs">Share</span>
-          </span>
-        </Button>
-        <ShareModal
-          video={video}
-          show={showShare}
-          setShowShare={setShowShare}
-        />
+        {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
+          <div className="hidden md:block">
+            <MintVideo video={video} variant="secondary" />
+          </div>
+        )}
       </div>
+      <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
     </div>
   )
 }
