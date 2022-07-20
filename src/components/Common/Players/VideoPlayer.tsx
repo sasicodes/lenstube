@@ -1,4 +1,4 @@
-import 'plyr-react/dist/plyr.css'
+import 'plyr-react/plyr.css'
 
 import useAppStore from '@lib/store'
 import * as tf from '@tensorflow/tfjs'
