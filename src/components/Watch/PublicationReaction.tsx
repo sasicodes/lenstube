@@ -14,14 +14,16 @@ import { LenstubePublication } from 'src/types/local'
 
 type Props = {
   publication: LenstubePublication
-  size?: 'xs' | 'sm' | 'xl' | '2xl'
+  iconSize?: 'xs' | 'sm' | 'xl' | '2xl'
+  textSize?: 'xs' | 'sm' | 'xl' | '2xl'
   isVertical?: boolean
   showLabel?: boolean
 }
 
 const PublicationReaction: FC<Props> = ({
   publication,
-  size = 'sm',
+  iconSize = 'sm',
+  textSize = 'sm',
   isVertical = false,
   showLabel = true
 }) => {
@@ -124,18 +126,18 @@ const PublicationReaction: FC<Props> = ({
         <span
           className={clsx('flex items-center space-x-1 outline-none', {
             'text-indigo-500 font-semibold': reaction.isLiked,
-            'flex-col': isVertical
+            'flex-col space-y-1': isVertical
           })}
         >
           <AiOutlineLike
             className={clsx({
-              'text-xs': size === 'xs',
-              'text-xl': size === 'xl',
-              'text-2xl': size === '2xl'
+              'text-xs': iconSize === 'xs',
+              'text-xl': iconSize === 'xl',
+              'text-2xl': iconSize === '2xl'
             })}
           />
           {showLabel && (
-            <span className={clsx({ 'text-xs': size === 'xs' })}>
+            <span className={clsx({ 'text-xs': textSize === 'xs' })}>
               {reaction.likeCount > 0 ? reaction.likeCount : 'Like'}
             </span>
           )}
@@ -149,18 +151,18 @@ const PublicationReaction: FC<Props> = ({
         <span
           className={clsx('flex items-center space-x-1 outline-none', {
             'text-indigo-500 font-semibold': reaction.isDisliked,
-            'flex-col': isVertical
+            'flex-col space-y-1': isVertical
           })}
         >
           <AiOutlineDislike
             className={clsx({
-              'text-xs': size === 'xs',
-              'text-xl': size === 'xl',
-              'text-2xl': size === '2xl'
+              'text-xs': iconSize === 'xs',
+              'text-xl': iconSize === 'xl',
+              'text-2xl': iconSize === '2xl'
             })}
           />
           {showLabel && (
-            <span className={clsx({ 'text-xs': size === 'xs' })}>
+            <span className={clsx({ 'text-xs': textSize === 'xs' })}>
               {reaction.dislikeCount > 0 ? reaction.dislikeCount : 'Dislike'}
             </span>
           )}

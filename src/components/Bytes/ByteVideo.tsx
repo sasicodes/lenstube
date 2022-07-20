@@ -3,11 +3,11 @@ import { getVideoUrl } from '@utils/functions/getVideoUrl'
 import imageCdn from '@utils/functions/imageCdn'
 import React, { FC, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
-import { BsPauseFill, BsPlayFill } from 'react-icons/bs'
 import { LenstubePublication } from 'src/types/local'
 
 import BottomOverlay from './BottomOverlay'
 import ByteActions from './ByteActions'
+import TopOverlay from './TopOverlay'
 
 type Props = {
   video: LenstubePublication
@@ -31,16 +31,18 @@ const ByteVideo: FC<Props> = ({ video }) => {
     threshold: 1,
     onLeave: () => {
       videoRef.current?.pause()
+      setIsPlaying(false)
     },
     onEnter: () => {
       videoRef.current?.load()
       videoRef.current?.play()
+      setIsPlaying(true)
     }
   })
 
   return (
     <div ref={observe} className="flex justify-center md:mt-5 snap-center">
-      <div className="relative group">
+      <div className="relative">
         <video
           onContextMenu={(event) => event.preventDefault()}
           onClick={() => onClickVideo()}
@@ -53,13 +55,7 @@ const ByteVideo: FC<Props> = ({ video }) => {
         >
           <source src={getVideoUrl(video)} type="video/mp4" />
         </video>
-        <div className="absolute top-0 px-3 pt-5 pb-3 hidden group-hover:block">
-          {!playing ? (
-            <BsPlayFill className="h-6 w-6 text-white" />
-          ) : (
-            <BsPauseFill className="h-6 w-6 text-white" />
-          )}
-        </div>
+        <TopOverlay playing={playing} onClickPlayPause={onClickVideo} />
         <BottomOverlay video={video} />
         <div ref={observe} />
       </div>

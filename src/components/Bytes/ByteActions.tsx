@@ -13,18 +13,19 @@ const ByteActions: FC<Props> = ({ video }) => {
   const [showShare, setShowShare] = useState(false)
 
   return (
-    <div className="flex flex-col justify-between">
-      <div className="items-center hidden py-3 space-y-4 md:flex md:flex-col">
+    <div className="flex flex-col justify-between w-12">
+      <div className="items-center hidden py-2 space-y-4 md:flex md:flex-col">
         <VideoOptions
           video={video}
           setShowShare={setShowShare}
           showOnHover={false}
         />
       </div>
-      <div className="items-center hidden py-5 space-y-4 md:flex md:flex-col">
+      <div className="items-center hidden py-3 space-y-3 md:flex md:flex-col">
         <PublicationReaction
           publication={video}
-          size="2xl"
+          iconSize="2xl"
+          textSize="xs"
           isVertical={true}
           showLabel={true}
         />
@@ -33,8 +34,9 @@ const ByteActions: FC<Props> = ({ video }) => {
           className="!p-0"
           onClick={() => setShowShare(true)}
         >
-          <span className="flex items-center space-x-1">
+          <span className="flex flex-col items-center justify-center space-x-1">
             <AiOutlineShareAlt className="text-2xl" />
+            <span className="pt-1 text-xs">Share</span>
           </span>
         </Button>
         <ShareModal
