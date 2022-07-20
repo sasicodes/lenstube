@@ -16,8 +16,6 @@ if (IS_MAINNET) {
   tf.enableProdMode()
 }
 
-import { Loader } from '@components/UIElements/Loader'
-
 import PlayerContextMenu from './PlayerContextMenu'
 
 interface Props {
@@ -50,14 +48,6 @@ export const defaultPlyrControls = [
   'disableContextMenu'
 ]
 
-const MetadataLoader = () => (
-  <div className="absolute backdrop-filter saturate-150 inset-0 z-[1] backdrop-blur-sm bg-opacity-50 dark:bg-black bg-white">
-    <div className="grid h-full place-items-center">
-      <Loader />
-    </div>
-  </div>
-)
-
 const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
   ({ source, options, time, onMetadataLoaded }, ref) => {
     const raptorRef = usePlyr(ref, { options, source })
@@ -77,11 +67,13 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
       }
     }
 
-    const onDataLoaded = () => {
-      onMetadataLoaded()
-      if (pathname === UPLOAD) {
-        const currentVideo = document.getElementsByTagName('video')[0]
-        analyseVideo(currentVideo)
+    const onDataLoaded = (event: Event) => {
+      if (event.target) {
+        onMetadataLoaded()
+        if (pathname === UPLOAD) {
+          const currentVideo = document.getElementsByTagName('video')[0]
+          analyseVideo(currentVideo)
+        }
       }
     }
 
@@ -104,8 +96,10 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
       }
       // Set seek time when meta data fully loaded
       api.plyr.on('loadedmetadata', metaDataLoaded)
+
       // fired when the frame at the current playback
-      api.plyr.on('loadeddata', onDataLoaded)
+      const currentVideo = document.getElementsByTagName('video')[0]
+      currentVideo.onloadeddata = (e) => onDataLoaded(e)
 
       return () => {
         api.plyr.pip = false
@@ -156,10 +150,10 @@ const VideoPlayer: FC<Props> = ({
   time
 }) => {
   const ref = React.useRef<APITypes>(null)
-  const [isMetadataLoaded, setIsMetadataLoaded] = useState(false)
+  const [plyrControls, setPlyrControls] = useState<string[]>(['progress'])
 
   const options = {
-    controls: controls,
+    controls: plyrControls,
     autoplay: autoPlay,
     autopause: true,
     tooltips: { controls: true, seek: true },
@@ -167,10 +161,7 @@ const VideoPlayer: FC<Props> = ({
   }
 
   return (
-    <div
-      className={clsx('overflow-hidden relative rounded-xl', wrapperClassName)}
-    >
-      {!isMetadataLoaded && <MetadataLoader />}
+    <div className={clsx('overflow-hidden rounded-xl', wrapperClassName)}>
       <CustomPlyrInstance
         ref={ref}
         source={{
@@ -185,7 +176,7 @@ const VideoPlayer: FC<Props> = ({
         }}
         options={options}
         time={time}
-        onMetadataLoaded={() => setIsMetadataLoaded(true)}
+        onMetadataLoaded={() => setPlyrControls(controls)}
       />
     </div>
   )
