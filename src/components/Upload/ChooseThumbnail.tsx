@@ -48,7 +48,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
         GENERATE_COUNT,
         ''
       )
-      let thumbnails: Array<{
+      const thumbnails: Array<{
         ipfsUrl: string
         url: string
         isNSFWThumbnail: boolean

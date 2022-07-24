@@ -262,13 +262,13 @@ const UploadSteps = () => {
       buttonText: 'Storing metadata...',
       loading: true
     })
-    let media = [
+    const media = [
       {
         item: uploadedVideo.videoSource,
         type: uploadedVideo.videoType
       }
     ]
-    let attributes = [
+    const attributes = [
       {
         displayType: 'string',
         traitType: 'publication',
