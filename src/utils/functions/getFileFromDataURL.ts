@@ -1,4 +1,4 @@
-export const getFileFromDataURL = async (dataUrl: string, fileName: string) => {
+export const getFileFromDataURL = (dataUrl: string, fileName: string) => {
   // convert base64 to raw binary data held in a string
   let byteString = atob(dataUrl.split(',')[1])
   // separate out the mime component

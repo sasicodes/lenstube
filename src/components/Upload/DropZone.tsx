@@ -12,7 +12,7 @@ import { FiUpload } from 'react-icons/fi'
 const DropZone = () => {
   const { setUploadedVideo } = useAppStore()
 
-  const uploadVideo = async (files: File[]) => {
+  const uploadVideo = (files: File[]) => {
     try {
       const file = files[0]
       if (file) {
