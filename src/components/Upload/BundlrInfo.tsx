@@ -34,19 +34,6 @@ const BundlrInfo = () => {
     chainId: POLYGON_CHAIN_ID
   })
 
-  useEffect(() => {
-    if (signer?.provider && mounted) initBundlr()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signer?.provider])
-
-  useEffect(() => {
-    if (bundlrData.instance && mounted) {
-      fetchBalance(bundlrData.instance)
-      estimatePrice(bundlrData.instance)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bundlrData.instance])
-
   const initBundlr = async () => {
     if (signer?.provider && address && !bundlrData.instance) {
       toast('Estimating upload cost...')
@@ -58,6 +45,42 @@ const BundlrInfo = () => {
       }
     }
   }
+
+  useEffect(() => {
+    if (signer?.provider && mounted) initBundlr()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signer?.provider])
+
+  const fetchBalance = async (bundlr?: WebBundlr) => {
+    const instance = bundlr || bundlrData.instance
+    if (address && instance) {
+      const balance = await instance.getBalance(address)
+      setBundlrData({
+        balance: utils.formatEther(balance.toString())
+      })
+    } else {
+      initBundlr()
+    }
+  }
+
+  const estimatePrice = async (bundlr: WebBundlr) => {
+    if (!uploadedVideo.buffer) return
+    const price = await bundlr.utils.getPrice(
+      BUNDLR_CURRENCY,
+      uploadedVideo.buffer?.length
+    )
+    setBundlrData({
+      estimatedPrice: utils.formatEther(price.toString())
+    })
+  }
+
+  useEffect(() => {
+    if (bundlrData.instance && mounted) {
+      fetchBalance(bundlrData.instance)
+      estimatePrice(bundlrData.instance)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bundlrData.instance])
 
   const depositToBundlr = async () => {
     if (!bundlrData.instance) return initBundlr()
@@ -93,29 +116,6 @@ const BundlrInfo = () => {
         depositing: false
       })
     }
-  }
-
-  const fetchBalance = async (bundlr?: WebBundlr) => {
-    const instance = bundlr || bundlrData.instance
-    if (address && instance) {
-      const balance = await instance.getBalance(address)
-      setBundlrData({
-        balance: utils.formatEther(balance.toString())
-      })
-    } else {
-      initBundlr()
-    }
-  }
-
-  const estimatePrice = async (bundlr: WebBundlr) => {
-    if (!uploadedVideo.buffer) return
-    const price = await bundlr.utils.getPrice(
-      BUNDLR_CURRENCY,
-      uploadedVideo.buffer?.length
-    )
-    setBundlrData({
-      estimatedPrice: utils.formatEther(price.toString())
-    })
   }
 
   return (

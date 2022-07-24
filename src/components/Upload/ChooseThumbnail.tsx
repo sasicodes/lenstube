@@ -33,6 +33,14 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
   const { onMouseDown } = useDraggableScroll(scrollRef)
   const { setUploadedVideo } = useAppStore()
 
+  const uploadThumbnailToIpfs = async (file: File) => {
+    setUploading(true)
+    const result: IPFSUploadResult = await uploadImageToIPFS(file)
+    setUploading(false)
+    afterUpload(result.ipfsUrl, file.type || 'image/jpeg')
+    return result
+  }
+
   const generateThumbnails = async (file: File) => {
     try {
       const thumbnailArray = await generateVideoThumbnails(
@@ -74,14 +82,6 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file])
-
-  const uploadThumbnailToIpfs = async (file: File) => {
-    setUploading(true)
-    const result: IPFSUploadResult = await uploadImageToIPFS(file)
-    setUploading(false)
-    afterUpload(result.ipfsUrl, file.type || 'image/jpeg')
-    return result
-  }
 
   const checkNsfw = async (source: string) => {
     const img = document.createElement('img')
