@@ -186,7 +186,7 @@ const VideoPlayer: FC<Props> = ({
           }}
           options={options}
           time={time}
-          onVideoDataLoaded={() => {}}
+          onVideoDataLoaded={() => null}
         />
       )}
     </div>

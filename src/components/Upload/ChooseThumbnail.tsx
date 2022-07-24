@@ -146,7 +146,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
       )}
       <div
         ref={thumbnails.length > 0 ? scrollRef : null}
-        onMouseDown={thumbnails.length > 0 ? onMouseDown : () => {}}
+        onMouseDown={thumbnails.length > 0 ? onMouseDown : undefined}
         className={clsx('flex flex-row py-0.5 pr-2 space-x-2', {
           'overflow-x-auto cursor-grab no-scrollbar': thumbnails.length > 0
         })}

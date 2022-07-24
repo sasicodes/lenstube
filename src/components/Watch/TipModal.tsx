@@ -293,7 +293,7 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
               </div>
             )}
           </span>
-          <Button disabled={loading} onClick={() => {}}>
+          <Button disabled={loading}>
             {buttonText
               ? buttonText
               : `Send ${
