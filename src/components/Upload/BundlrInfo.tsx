@@ -59,7 +59,7 @@ const BundlrInfo = () => {
         balance: utils.formatEther(balance.toString())
       })
     } else {
-      initBundlr()
+      await initBundlr()
     }
   }
 
@@ -83,7 +83,7 @@ const BundlrInfo = () => {
   }, [bundlrData.instance])
 
   const depositToBundlr = async () => {
-    if (!bundlrData.instance) return initBundlr()
+    if (!bundlrData.instance) return await initBundlr()
     if (!bundlrData.deposit) return toast.error('Enter deposit amount')
     const depositAmount = parseFloat(bundlrData.deposit)
     const value = parseToAtomicUnits(

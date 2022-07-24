@@ -74,11 +74,14 @@ const CustomPlyrInstance = forwardRef<APITypes, CustomPlyrProps>(
       }
     }
 
-    const onDataLoaded = (event: Event, currentVideo: HTMLVideoElement) => {
+    const onDataLoaded = async (
+      event: Event,
+      currentVideo: HTMLVideoElement
+    ) => {
       if (event.target) {
         onVideoDataLoaded()
         if (pathname === UPLOAD) {
-          analyseVideo(currentVideo)
+          await analyseVideo(currentVideo)
         }
       }
     }

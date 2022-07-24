@@ -134,7 +134,7 @@ const UploadSteps = () => {
   }
 
   const uploadToBundlr = async () => {
-    if (!bundlrData.instance) return initBundlr()
+    if (!bundlrData.instance) return await initBundlr()
     if (!uploadedVideo.buffer)
       return toast.error('Video not uploaded correctly.')
     if (parseFloat(bundlrData.balance) < parseFloat(bundlrData.estimatedPrice))
