@@ -18,7 +18,7 @@
     "@apollo/client": "^3.6.9",
     "@bundlr-network/client": "^0.7.15",
     "@headlessui/react": "^1.6.6",
-    "@hookform/resolvers": "^2.9.6",
+    "@hookform/resolvers": "^2.9.7",
     "@rajesh896/video-thumbnails-generator": "^2.3.9",
     "@sentry/nextjs": "^7.7.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
