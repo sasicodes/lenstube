@@ -1,3 +1,4 @@
+import MintVideo from '@components/Watch/MintVideo'
 import logger from '@lib/logger'
 import { getPermanentVideoUrl, getVideoUrl } from '@utils/functions/getVideoUrl'
 import axios from 'axios'
@@ -76,8 +77,19 @@ const ByteVideo: FC<Props> = ({ video }) => {
         <TopOverlay playing={playing} onClickPlayPause={onClickVideo} />
         <BottomOverlay video={video} />
         <div ref={observe} />
+        <div className="absolute lg:hidden md:hidden right-2 top-2/4">
+          <ByteActions video={video} />
+          {video?.collectModule?.__typename !==
+            'RevertCollectModuleSettings' && (
+            <div className="text-white md:text-gray-500 flex justify-end">
+              <MintVideo video={video} variant="secondary" />
+            </div>
+          )}
+        </div>
       </div>
-      <ByteActions video={video} />
+      <div className="hidden md:flex">
+        <ByteActions video={video} />
+      </div>
     </div>
   )
 }
