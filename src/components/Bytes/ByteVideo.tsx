@@ -77,12 +77,15 @@ const ByteVideo: FC<Props> = ({ video }) => {
         <TopOverlay playing={playing} onClickPlayPause={onClickVideo} />
         <BottomOverlay video={video} />
         <div ref={observe} />
-        <div className="absolute lg:hidden md:hidden right-2 top-2/4">
+        <div className="absolute lg:hidden md:hidden right-2 top-[40%]">
           <ByteActions video={video} />
           {video?.collectModule?.__typename !==
             'RevertCollectModuleSettings' && (
-            <div className="text-white md:text-gray-500 flex justify-end">
+            <div className="text-white md:text-gray-500 text-center">
               <MintVideo video={video} variant="secondary" />
+              <div className="text-xs">
+                {video.stats?.totalAmountOfCollects || 'Mint'}
+              </div>
             </div>
           )}
         </div>
