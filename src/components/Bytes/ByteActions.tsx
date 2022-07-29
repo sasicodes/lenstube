@@ -12,15 +12,15 @@ const ByteActions: FC<Props> = ({ video }) => {
   const [showShare, setShowShare] = useState(false)
 
   return (
-    <div className="flex-col justify-between w-12 md:flex">
-      <div className="flex justify-center px-2 md:px-0 py-2 space-y-4 md:flex-col">
+    <div className="flex-col items-center justify-between w-12 md:flex">
+      <div className="flex justify-center p-2 space-y-4 md:flex-col">
         <VideoOptions
           video={video}
           setShowShare={setShowShare}
           showOnHover={false}
         />
       </div>
-      <div className="md:flex items-center py-3 space-y-2 md:flex-col">
+      <div className="items-center py-3 space-y-1 md:flex md:flex-col">
         <PublicationReaction
           publication={video}
           iconSize="2xl"
@@ -30,7 +30,7 @@ const ByteActions: FC<Props> = ({ video }) => {
           showLabel
         />
         {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
-          <div className="hidden md:block text-white md:text-gray-500">
+          <div className="hidden md:block">
             <MintVideo video={video} variant="secondary" />
             <div className="text-xs text-center">
               {video.stats?.totalAmountOfCollects || 'Mint'}

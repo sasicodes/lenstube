@@ -51,7 +51,7 @@ const VideoOptions = ({
       trigger={
         <div
           className={clsx(
-            'p-1 text-white md:text-gray-800 group-hover:visible',
+            'p-1 text-white md:text-inherit group-hover:visible',
             {
               'lg:invisible': showOnHover
             }
